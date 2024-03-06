@@ -41,10 +41,81 @@ hash_table_t TTable[2];
 //int maxmin(state_t state, int depth, bool use_tt);
 //int minmax(state_t state, int depth, bool use_tt = false);
 //int maxmin(state_t state, int depth, bool use_tt = false);
-//int negamax(state_t state, int depth, int color, bool use_tt = false);
+int negamax(state_t state, int color);
 int negamax(state_t state, int depth, int alpha, int beta, int color, bool use_tt = false);
 int scout(state_t state, int depth, int color, bool use_tt = false);
 int negascout(state_t state, int depth, int alpha, int beta, int color, bool use_tt = false);
+
+// Negamax sin poda alpha-beta
+int negamax(state_t state, int color) {
+    if (state.terminal()) {
+        return color * state.value()
+    }
+
+    int score = -MININT;
+    bool moved = false;
+    for (int p : state.get_moves(color == 1)) {
+        moved = true;
+        score = max(score, -negamax(state.move(color == 1, p), -color));
+    }
+
+    if (!moved) {
+        score = -negamax(state, -color);
+    }
+
+    ++expanded;
+    return score;
+}
+
+// Algoritmo negamax con alpha-beta pruning
+int negamax(state_t state, int depth, int alpha, int beta, int color, bool use_tt = false){
+    if(state.terminal() || depth == 0) return color * state.value();
+
+    int score = -numeric_limits<int>::max();
+
+    vector<state_t> moves = state.get_all_valid_moves(color);
+
+    for(state_t &child : moves) {
+        generated++;
+        val = -negamax(child, depth - 1, -beta, -alpha, -color);
+        score = max(score, val);
+        alpha = max(alpha, score);
+        if(alpha >= beta) break;
+    }
+
+    expanded++;
+    return score;
+}
+
+// Algoritmo scout
+//int scout(state_t state, int depth, int color, bool use_tt = false);
+
+// Algoritmo negascout
+int negascout(state_t state, int depth, int alpha, int beta, int color, bool use_tt = false){
+    if(state.terminal() || depth == 0) return color * state.value();
+
+    int score;
+
+    vector<state_t> moves = state.get_all_valid_moves(color);
+
+    for(state_t &child : moves) {
+        generated++;
+        if (child == moves[0]) {
+            score = -negascout(child, depth - 1, -beta, -alpha, -color);
+        }
+        else {
+            score = -negascout(child, depth - 1, -alpha - 1, -alpha, -color);
+            if (alpha < score && score < beta) {
+                score = -negascout(child, depth - 1, -beta, -score, -color);
+            }
+        }
+        alpha = max(alpha, score);
+        if(alpha >= beta) break;
+    }
+
+    expanded++;
+    return alpha;
+}
 
 int main(int argc, const char **argv) {
     state_t pv[128];
@@ -125,24 +196,4 @@ int main(int argc, const char **argv) {
     }
 
     return 0;
-}
-
-int negamax(state_t state, int color) {
-    if (state.terminal()) {
-        return color * state.value()
-    }
-
-    int score = -MININT;
-    bool moved = false;
-    for (int p : state.get_moves(color == 1)) {
-        moved = true;
-        score = max(score, -negamax(state.move(color == 1, p), -color));
-    }
-
-    if (!moved) {
-        score = -negamax(state, -color);
-    }
-
-    ++expanded;
-    return score;
 }
