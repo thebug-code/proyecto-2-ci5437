@@ -43,7 +43,7 @@ hash_table_t TTable[2];
 //int maxmin(state_t state, int depth, bool use_tt = false);
 int negamax(state_t state, int color);
 int negamax(state_t state, int alpha, int beta, int color);
-int scout(state_t state, int depth, int color, bool use_tt = false);
+int scout(state_t state, int color);
 int negascout(state_t state, int alpha, int beta, int color);
 
 // Negamax sin poda alpha-beta
@@ -92,7 +92,33 @@ int negamax(state_t state, int alpha, int beta, int color){
 }
 
 // Algoritmo scout
-//int scout(state_t state, int depth, int color, bool use_tt = false);
+int scout(state_t state, int color) {
+    ++generated;
+    if (state.terminal())
+        return state.value();
+
+    int score = 0;
+    vector<state_t> moves = state.get_moves(color == 1);
+    for (int i = 0; i < (int)moves.size(); ++i) {
+        state_t child = state.move(color == 1, moves[i]);
+        // Verifica si child es el primer hijo
+        if (i == 0)
+            score = scout(child, -color);
+        else {
+            if (color == 1 && test(child, -color, score, 0))
+                score = scout(child, -color);
+            if (color == -1 && !test(child, -color, score, 1))
+                score = scout(child, -color);
+        }
+    }
+    
+    // No hay movimiento valido, se pasa el turno
+    if (moves.size() == 0)
+        score = scout(state, -color);
+
+    ++expanded;
+    return score;
+}
 
 // Algoritmo negascout
 int negascout(state_t state, int alpha, int beta, int color){
