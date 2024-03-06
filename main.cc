@@ -91,6 +91,32 @@ int negamax(state_t state, int alpha, int beta, int color){
     return score;
 }
 
+// cond: 0 es > ; 1 es >=
+bool test(state_t state, int color, int score, bool cond) {
+    ++generated;
+    if (state.terminal())
+        return (cond ? state.value() >= score : state.value() > score);
+
+    ++expanded;
+    vector<state_t> moves = state.get_moves(color == 1);
+    for (int i = 0; i < (int)moves.size(); ++i) {
+        state_t child = state.move(color == 1, moves[i]);
+        if (color == 1 && test(child, -color, score, cond))
+            return true;
+        if (color == -1 && !test(child, -color, score, cond))
+            return false;
+    }
+
+    if (moves.size() == 0) {
+        if (color == 1 && test(state, -color, score, cond))
+            return true;
+        if (color == -1 && !test(state, -color, score, cond))
+            return false;
+    }
+
+    return color == -1;
+}
+
 // Algoritmo scout
 int scout(state_t state, int color) {
     ++generated;
