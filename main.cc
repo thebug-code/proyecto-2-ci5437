@@ -44,7 +44,7 @@ hash_table_t TTable[2];
 int negamax(state_t state, int color);
 int negamax(state_t state, int alpha, int beta, int color);
 int scout(state_t state, int depth, int color, bool use_tt = false);
-int negascout(state_t state, int depth, int alpha, int beta, int color, bool use_tt = false);
+int negascout(state_t state, int alpha, int beta, int color);
 
 // Negamax sin poda alpha-beta
 int negamax(state_t state, int color) {
@@ -95,29 +95,37 @@ int negamax(state_t state, int alpha, int beta, int color){
 //int scout(state_t state, int depth, int color, bool use_tt = false);
 
 // Algoritmo negascout
-int negascout(state_t state, int depth, int alpha, int beta, int color, bool use_tt = false){
-    if(state.terminal() || depth == 0) return color * state.value();
+int negascout(state_t state, int alpha, int beta, int color){
+    ++generated;
+    if(state.terminal())
+        return color * state.value();
 
     int score;
+    vector<state_t> moves = state.get_moves(color == 1);
 
-    vector<state_t> moves = state.get_all_valid_moves(color);
+    for (int i = 0; i < (int)moves.size(); ++i) {
+        auto child = state.move(color == 1, moves[i]);
 
-    for(state_t &child : moves) {
-        generated++;
-        if (child == moves[0]) {
-            score = -negascout(child, depth - 1, -beta, -alpha, -color);
-        }
+        // Verifica si child es el primer hijo
+        if (i == 0)
+            score = -negascout(child, -beta, -alpha, -color);
         else {
-            score = -negascout(child, depth - 1, -alpha - 1, -alpha, -color);
-            if (alpha < score && score < beta) {
-                score = -negascout(child, depth - 1, -beta, -score, -color);
-            }
+            score = -negascout(child, -alpha - 1, -alpha, -color);
+            if (alpha < score && score < beta)
+                score = -negascout(child, -beta, -score, -color);
         }
-        alpha = max(alpha, score);
-        if(alpha >= beta) break;
-    }
 
-    expanded++;
+        alpha = max(alpha, score);
+        if (alpha >= beta)
+            break;
+    }
+    
+    // No hay movimiento valido, se pasa el turno
+    if (moves.size() == 0)
+        alpha = -negascout(state, -beta, -alpha, -color);
+
+
+    ++expanded;
     return alpha;
 }
 
