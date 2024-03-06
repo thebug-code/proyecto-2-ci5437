@@ -42,7 +42,7 @@ hash_table_t TTable[2];
 //int minmax(state_t state, int depth, bool use_tt = false);
 //int maxmin(state_t state, int depth, bool use_tt = false);
 int negamax(state_t state, int color);
-int negamax(state_t state, int depth, int alpha, int beta, int color, bool use_tt = false);
+int negamax(state_t state, int alpha, int beta, int color);
 int scout(state_t state, int depth, int color, bool use_tt = false);
 int negascout(state_t state, int depth, int alpha, int beta, int color, bool use_tt = false);
 
@@ -52,7 +52,7 @@ int negamax(state_t state, int color) {
         return color * state.value()
     }
 
-    int score = -MININT;
+    int score = MININT;
     bool moved = false;
     for (int p : state.get_moves(color == 1)) {
         moved = true;
@@ -68,22 +68,26 @@ int negamax(state_t state, int color) {
 }
 
 // Algoritmo negamax con alpha-beta pruning
-int negamax(state_t state, int depth, int alpha, int beta, int color, bool use_tt = false){
-    if(state.terminal() || depth == 0) return color * state.value();
+int negamax(state_t state, int alpha, int beta, int color){
+    ++generated;
+    if(state.terminal()) 
+        return color * state.value();
 
-    int score = -numeric_limits<int>::max();
+    int score = MININT;
+    bool moved = false;
+    for (int p : state.get_moves(color == 1)) {
+        moved = true;
 
-    vector<state_t> moves = state.get_all_valid_moves(color);
-
-    for(state_t &child : moves) {
-        generated++;
-        val = -negamax(child, depth - 1, -beta, -alpha, -color);
-        score = max(score, val);
+        score = max(score, -negamax(state.move(color == 1, p), -beta, -alpha, -color));
         alpha = max(alpha, score);
-        if(alpha >= beta) break;
+        if (alpha >= beta)
+            break;
     }
 
-    expanded++;
+    if (!moved)
+        score = -negamax(state, -beta, -alpha, -color);
+
+    ++expanded;
     return score;
 }
 
