@@ -13,6 +13,8 @@
 
 using namespace std;
 
+const int MININT = numeric_limits<int>::min();
+const int MAXINT = numeric_limits<int>::max();
 unsigned expanded = 0;
 unsigned generated = 0;
 int tt_threshold = 32; // threshold to save entries in TT
@@ -39,7 +41,7 @@ hash_table_t TTable[2];
 //int maxmin(state_t state, int depth, bool use_tt);
 //int minmax(state_t state, int depth, bool use_tt = false);
 //int maxmin(state_t state, int depth, bool use_tt = false);
-int negamax(state_t state, int depth, int color, bool use_tt = false);
+//int negamax(state_t state, int depth, int color, bool use_tt = false);
 int negamax(state_t state, int depth, int alpha, int beta, int color, bool use_tt = false);
 int scout(state_t state, int depth, int color, bool use_tt = false);
 int negascout(state_t state, int depth, int alpha, int beta, int color, bool use_tt = false);
@@ -125,3 +127,22 @@ int main(int argc, const char **argv) {
     return 0;
 }
 
+int negamax(state_t state, int color) {
+    if (state.terminal()) {
+        return color * state.value()
+    }
+
+    int score = -MININT;
+    bool moved = false;
+    for (int p : state.get_moves(color == 1)) {
+        moved = true;
+        score = max(score, -negamax(state.move(color == 1, p), -color));
+    }
+
+    if (!moved) {
+        score = -negamax(state, -color);
+    }
+
+    ++expanded;
+    return score;
+}
