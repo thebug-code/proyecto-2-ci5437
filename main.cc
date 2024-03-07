@@ -47,7 +47,7 @@ int negascout(state_t state, int alpha, int beta, int color);
 // Negamax sin poda alpha-beta
 int negamax(state_t state, int color) {
     if (state.terminal()) {
-        return color * state.value()
+        return color * state.value();
     }
 
     int score = -INFINITY;
@@ -96,9 +96,9 @@ bool test(state_t state, int color, int score, bool cond) {
         return (cond ? state.value() >= score : state.value() > score);
 
     ++expanded;
-    vector<state_t> moves = state.get_moves(color == 1);
+    auto moves = state.get_moves(color == 1);
     for (int i = 0; i < (int)moves.size(); ++i) {
-        state_t child = state.move(color == 1, moves[i]);
+        auto child = state.move(color == 1, moves[i]);
         if (color == 1 && test(child, -color, score, cond))
             return true;
         if (color == -1 && !test(child, -color, score, cond))
@@ -122,9 +122,9 @@ int scout(state_t state, int color) {
         return state.value();
 
     int score = 0;
-    vector<state_t> moves = state.get_moves(color == 1);
+    auto moves = state.get_moves(color == 1);
     for (int i = 0; i < (int)moves.size(); ++i) {
-        state_t child = state.move(color == 1, moves[i]);
+        auto child = state.move(color == 1, moves[i]);
         // Verifica si child es el primer hijo
         if (i == 0)
             score = scout(child, -color);
@@ -151,7 +151,7 @@ int negascout(state_t state, int alpha, int beta, int color) {
         return color * state.value();
 
     int score;
-    vector<state_t> moves = state.get_moves(color == 1);
+    auto moves = state.get_moves(color == 1);
 
     for (int i = 0; i < (int)moves.size(); ++i) {
         auto child = state.move(color == 1, moves[i]);
