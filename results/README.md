@@ -18,8 +18,17 @@ Se implementarón los siguientes algoritmos para recorrer los respectivos árbol
 
 En cada implementación de los cuatro algoritmos anteriores, se tiene que:
 
-En primer lugar, se eliminaron los parámetros  `depth` y `use_tt` de la implementación de cada uno de estos. El parámetro `depth` indica la profundidad máxima a la que se debe explorar el árbol de juego, pero en este caso no se quiso limitar la búsqueda a ninguna profundidad, sino que se exploró todo el árbol hasta llegar a los nodos terminales o hasta que se alcanzara el tiempo máximo establecido. El parámetro `use_tt` indica si se debe usar una tabla de transposición, que es una estructura de datos que almacena los valores de los nodos ya visitados para evitar repetir cálculos, pero en este caso no se implementó esta estructura, ya que se consideró que no era necesaria para el tamaño del árbol de juego.
+En primer lugar, se eliminaron los parámetros  `depth` y `use_tt` de la implementación de cada uno de estos. El parámetro `depth` indica la profundidad máxima a la que se debe explorar el árbol de juego, pero en este caso no se quiso limitar la búsqueda a ninguna profundidad, sino que se exploró todo el árbol hasta que se alcanzara el tiempo límite establecido. El parámetro `use_tt` indica si se debe usar una tabla de transposición, que es una estructura de datos que almacena los valores de los nodos ya visitados para evitar repetir cálculos, pero en este caso no se implementó esta estructura, ya que se consideró que no era necesaria para el tamaño del árbol de juego.
 
 La implementación de cada uno de los algoritmos, se baso en los pseudocódigos vistos en clases. La única adición relevante a estos es que, para este problema, se consideró el caso de que un jugador no pueda colocar ninguna de sus fichas y deba pasar el turno. Para ello, al momento de ejecutar los algoritmos, se verifica que exista algún movimiento válido, y en caso de no haberlo, el turno pasa al otro jugador usando el mismo estado.
 
 Además, es importante resaltar que en la representación del juego obtenida en `othello_cut`, las fichas negras son representadas con el valor booleano true, y las fichas blancas con el valor false; mientras que en nuestra implementación de los algoritmos, el turno del jugador con fichas negras es representado con el entero 1 y el turno del jugador de fichas blancas, con -1. Por esta razón, se utilizó `color == 1` para pasar de la representación de los algoritmos a la del juego.
+
+## Resultados Experimentales
+Los algoritmos se ejecutaron en una computadora con las siguientes características:
+
+- Procesador: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz.
+- Memoria RAM: 20.0 GB (19.8 GB usable).
+- Sistema operativo: Windows 11 Home.
+
+Además, la ejecución de los algoritmos de realizo usando el programa y siguiendo las indicaciones mencionadas en el enunciado del proyecto: evaluandolos en una instancia de la variación principal del problema y que se encuentra a una distancia cada vez más lejana de la meta en cada iteración. El tiempo limite establecido para cada ejecución es de 2 horas (7200 segundos). Los resultados se muestran en las siguientes tablas
