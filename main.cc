@@ -13,10 +13,9 @@
 
 using namespace std;
 
-const int MININT = numeric_limits<int>::min();
-const int MAXINT = numeric_limits<int>::max();
 unsigned expanded = 0;
 unsigned generated = 0;
+const int INFINITY = 200;
 int tt_threshold = 32; // threshold to save entries in TT
 
 // Transposition table (it is not necessary to implement TT)
@@ -51,7 +50,7 @@ int negamax(state_t state, int color) {
         return color * state.value()
     }
 
-    int score = MININT;
+    int score = -INFINITY;
     bool moved = false;
     for (int p : state.get_moves(color == 1)) {
         moved = true;
@@ -72,13 +71,12 @@ int negamax(state_t state, int alpha, int beta, int color) {
     if (state.terminal())
         return color * state.value();
 
-    int score = MININT;
+    int score = -INFINITY;
     bool moved = false;
     for (int p : state.get_moves(color == 1)) {
         moved = true;
 
-        score = max(score,
-                    -negamax(state.move(color == 1, p), -beta, -alpha, -color));
+        score = max(score, -negamax(state.move(color == 1, p), -beta, -alpha, -color));
         alpha = max(alpha, score);
         if (alpha >= beta)
             break;
@@ -236,13 +234,13 @@ int main(int argc, const char **argv) {
 
         try {
             if (algorithm == 1) {
-                // value = negamax(pv[i], 0, color, use_tt);
+                value = negamax(pv[i], color);
             } else if (algorithm == 2) {
-                // value = negamax(pv[i], 0, -200, 200, color, use_tt);
+                value = negamax(pv[i], -INFINITY, INFINITY, color);
             } else if (algorithm == 3) {
-                // value = scout(pv[i], 0, color, use_tt);
+                value = scout(pv[i], color);
             } else if (algorithm == 4) {
-                // value = negascout(pv[i], 0, -200, 200, color, use_tt);
+                value = negascout(pv[i], -INFINITY, INFINITY, color);
             }
         } catch (const bad_alloc &e) {
             cout << "size TT[0]: size=" << TTable[0].size()
