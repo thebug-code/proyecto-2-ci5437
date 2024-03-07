@@ -1,4 +1,8 @@
+#
+### CI5437 - Inteligencia Artificial 1
+##### Prof. Carlos Infante
 # Proyecto 2: Arboles de Juego
+Por Oliver Bueno, Alejandro Meneses
 
 ## Representación de Othello
 En primer lugar, se completó la implementación de la función outflank, que verifica si existe un movimiento es válido. En particular, se agrego la verificación para los movimientos diagonales. Para ello, se toma la posición en la que se quiere colocar la ficha del jugador actual, y se recorren las cuatro diagonales posibles en ambas direcciones, hasta encontrar una casilla vacía o el borde del tablero. Si en el camino se encuentran una o más fichas del rival seguidas por una ficha del jugador actual, el movimiento es válido.
