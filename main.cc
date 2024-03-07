@@ -46,6 +46,7 @@ int negascout(state_t state, int alpha, int beta, int color);
 
 // Negamax sin poda alpha-beta
 int negamax(state_t state, int color) {
+    ++generated;
     if (state.terminal()) {
         return color * state.value();
     }
