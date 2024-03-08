@@ -34,7 +34,7 @@ Los algoritmos se ejecutaron en una computadora con las siguientes característi
 Además, la ejecución de los algoritmos se realizo usando el programa y siguiendo las indicaciones mencionadas en el enunciado del proyecto: evaluandolos en una instancia de la variación principal del problema que se encuentra a una distancia cada vez más lejana de la meta en cada iteración. El tiempo límite establecido para cada ejecución es de 2 horas (7200 segundos). Con esto donde se permitió que los algoritmos se ejecutaran en la mayor cantidad de nodos iniciales posibles pertenecientes a la variación principal hasta haber transcurrido este tiempo. Los resultados se muestran en las siguientes tablas
 
 #### Neganax
-| Movimiento | Jugador | Valor | #Expandidos | #Generados | Segundos | Generados/Segundo |
+| Movimiento | Jugador | Valor | Expandidos  | Generados  | Tiempo (s) | Generados/Segundo |
 |------------|---------|-------|-------------|------------|----------|-------------------|
 | 34.        | Blanco  | -4    | 0           | 1          | 3.00002e-06 | 333,331        |
 | 33.        | Negro   | -4    | 1           | 2          | 6.00005e-06 | 333,331        |
@@ -54,3 +54,31 @@ Además, la ejecución de los algoritmos se realizo usando el programa y siguien
 | 19.        | Negro   | -4    | 65121519    | 90647895   | 38.6079    | 2.34791e+06     |
 | 18.        | Blanco  | -4    | 625084814   | 876269598  | 373.83     | 2.34403e+06     |
 | 17.        | Negro   | -4    | 3999381161  | 1305006091 | 2339.84    | 557733          |
+
+#### Negamax con poda alpha-beta
+| Movimiento | Jugador | Valor | Expandidos | Generados | Tiempo (s) | Generados/Segundo |
+|------------|---------|-------|-------------|------------|----------|-------------------|
+| 34.        | Blanco  | -4    | 0           | 1          | 1.00001e-06 | 999992            |
+| 33.        | Negro   | -4    | 1           | 2          | 2.00002e-06 | 999992            |
+| 32.        | Blanco  | -4    | 3           | 5          | 3.00002e-06 | 1.66665e+06       |
+| 31.        | Negro   | -4    | 4           | 6          | 1.00001e-06 | 5.99995e+06       |
+| 30.        | Blanco  | -4    | 9           | 13         | 4.00003e-06 | 3.24998e+06       |
+| 29.        | Negro   | -4    | 10          | 14         | 3.00002e-06 | 4.66663e+06       |
+| 28.        | Blanco  | -4    | 21          | 27         | 9.00001e-06 | 3e+06             |
+| 27.        | Negro   | -4    | 62          | 82         | 2.30001e-05 | 3.56521e+06       |
+| 26.        | Blanco  | -4    | 186         | 238        | 7e-05      | 3.4e+06           |
+| 25.        | Negro   | -4    | 769         | 1003       | 0.000301   | 3.33223e+06       |
+| 24.        | Blanco  | -4    | 1152        | 1502       | 0.000409   | 3.67237e+06       |
+| 23.        | Negro   | -4    | 3168        | 4068       | 0.001194   | 3.40704e+06       |
+| 22.        | Blanco  | -4    | 7031        | 9130       | 0.002924   | 3.12243e+06       |
+| 21.        | Negro   | -4    | 76021       | 98755      | 0.041441   | 2.38303e+06       |
+| 20.        | Blanco  | -4    | 98129       | 127644     | 0.061595   | 2.07231e+06       |
+| 19.        | Negro   | -4    | 205017      | 267604     | 0.123571   | 2.16559e+06       |
+| 18.        | Blanco  | -4    | 960343      | 1259430    | 0.572935   | 2.19821e+06       |
+| 17.        | Negro   | -4    | 1549785     | 2031924    | 0.969424   | 2.09601e+06       |
+| 16.        | Blanco  | -4    | 22325108    | 29501798   | 12.3624    | 2.3864e+06        |
+| 15.        | Negro   | -4    | 32949019    | 43574643   | 18.7108    | 2.32885e+06       |
+| 14.        | Blanco  | -4    | 82016158    | 107642871  | 46.7151    | 2.30424e+06       |
+| 13.        | Negro   | -4    | 315074162   | 415909956  | 200.79     | 2.07136e+06       |
+| 12.        | Blanco  | -4    | 2230058150  | 2931981147 | 1318.7     | 2.22339e+06       |
+| 11.        | Negro   | -4    | 512734023   | 2042502265 | 3019.8     | 676369            |
