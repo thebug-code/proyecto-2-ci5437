@@ -111,3 +111,44 @@ Además, la ejecución de los algoritmos se realizo usando el programa y siguien
 | 12.        | Blanco  | -4    | 477000927   | 623019805  | 271.827    | 2.29197e+06     |
 | 11.        | Negro   | -4    | 2569420749  | 3362309726 | 1499.65    | 2.24206e+06     |
 | 10.        | Blanco  | -4    | 4286712056  | 1324722117 | 2545.57    | 520403          |
+
+## Comparación de los algoritmos
+A continuación se presentan gráficos que comparan el rendimiento de los algoritmos estudiados. Dichos gráficos se muestran en notación logarítmica para mejor apreciación de los resultados.
+
+
+Gráfico 1: Nodos expandidos en cada nivel
+
+![Expandidos][1]
+
+[1]: Figuras/imaexp.jpg
+
+Gráfico 2: Nodos generados en cada nivel
+
+![Generados][2]
+
+[2]: Figuras/imagene.jpg
+
+Gráfico 3: Tiempo en recorrer cada nivel
+
+![Tiempo][3]
+
+[3]: Figuras/imatiem.jpg
+
+Dados los resultados, se observa que el algoritmo más eficiente para recorrer el arbol de juego es Negascout, siendo ligeramente superior a lo mostrado por el algoritmo Scout.
+
+Observando detalladamente cada algorimos, se observa que Negamax expande y genera una cantidad de nodos muy superior con respecto a los demás algoritmos, llegando a explorar el árbol hasta un PV igual a 17, mientras que el mismo algoritmo expleando poda alfa-beta explora árbol llega hasta un PV igual a 11. Esto muestra que aplicar poda alfa-beta en el algoritmo Negamax genera un aumento de eficiencia significativo.
+
+Por otro lado, comparando los algoritmos Scout y Negascout, estos presentan un comportamiento similar, en las gráficas se muestra como estos se solapan hasta cierto punto, observando que el algoritmo Negascout comienza a tener mejor rendimiento que el algoritmo Scout en los niveles más profundos.
+
+También es importante observar que el algotitmos Negamax con poda alfa-beta se comporta com mejor rendimiento que los demás en los primeros 11 nieveles del árbol de juego.
+
+Comparando los resultados de las corridas de los cuatro algoritmos, se observa que los algoritmos Scout y Negascout recorren a mayor profundidad (tienen los menores pv) el árbol de juego, esto se observa mejor en la siguiente gráfica.
+
+
+Gráfico 4: Valores mínimos de los pv
+
+![pv][4]
+
+[4]: Figuras/imapv.jpg
+
+
