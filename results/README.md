@@ -34,7 +34,7 @@ Los algoritmos se ejecutaron en una computadora con las siguientes característi
 Además, la ejecución de los algoritmos se realizo usando el programa y siguiendo las indicaciones mencionadas en el enunciado del proyecto: evaluandolos en una instancia de la variación principal del problema que se encuentra a una distancia cada vez más lejana de la meta en cada iteración. El tiempo límite establecido para cada ejecución es de 2 horas (7200 segundos). Con esto donde se permitió que los algoritmos se ejecutaran en la mayor cantidad de nodos iniciales posibles pertenecientes a la variación principal hasta haber transcurrido este tiempo. Los resultados se muestran en las siguientes tablas
 
 #### Neganax
-| Movimiento | Jugador | Valor | Expandidos  | Generados  | Tiempo (s) | Generados/Segundo |
+| PV | Jugador | Valor | Expandidos  | Generados  | Tiempo (s) | Generados/Segundo |
 |------------|---------|-------|-------------|------------|----------|-------------------|
 | 34.        | Blanco  | -4    | 0           | 1          | 3.00002e-06 | 333,331        |
 | 33.        | Negro   | -4    | 1           | 2          | 6.00005e-06 | 333,331        |
@@ -56,7 +56,7 @@ Además, la ejecución de los algoritmos se realizo usando el programa y siguien
 | 17.        | Negro   | -4    | 3999381161  | 1305006091 | 2339.84    | 557733          |
 
 #### Negamax con poda alpha-beta
-| Movimiento | Jugador | Valor | Expandidos | Generados | Tiempo (s) | Generados/Segundo |
+| PV | Jugador | Valor | Expandidos | Generados | Tiempo (s) | Generados/Segundo |
 |------------|---------|-------|-------------|------------|----------|-------------------|
 | 34.        | Blanco  | -4    | 0           | 1          | 1.00001e-06 | 999992            |
 | 33.        | Negro   | -4    | 1           | 2          | 2.00002e-06 | 999992            |
@@ -84,7 +84,7 @@ Además, la ejecución de los algoritmos se realizo usando el programa y siguien
 | 11.        | Negro   | -4    | 512734023   | 2042502265 | 3019.8     | 676369            |
 
 #### Negascout
-| Movimiento | Jugador | Valor | #Expandidos | #Generados | Segundos | Generados/Segundo |
+| PV | Jugador | Valor | Expandidos | Generados | Tiempo (s) | Generados/Segundo |
 |------------|---------|-------|-------------|------------|----------|-------------------|
 | 34.        | Blanco  | -4    | 0           | 1          | 2.99991e-06 | 333344         |
 | 33.        | Negro   | -4    | 1           | 2          | 2.00002e-06 | 999992         |
