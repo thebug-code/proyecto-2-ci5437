@@ -32,3 +32,25 @@ Los algoritmos se ejecutaron en una computadora con las siguientes característi
 - Sistema operativo: Windows 11 Home.
 
 Además, la ejecución de los algoritmos se realizo usando el programa y siguiendo las indicaciones mencionadas en el enunciado del proyecto: evaluandolos en una instancia de la variación principal del problema que se encuentra a una distancia cada vez más lejana de la meta en cada iteración. El tiempo límite establecido para cada ejecución es de 2 horas (7200 segundos). Con esto donde se permitió que los algoritmos se ejecutaran en la mayor cantidad de nodos iniciales posibles pertenecientes a la variación principal hasta haber transcurrido este tiempo. Los resultados se muestran en las siguientes tablas
+
+#### Neganax
+| Movimiento | Jugador | Valor | #Expandidos | #Generados | Segundos | Generados/Segundo |
+|------------|---------|-------|-------------|------------|----------|-------------------|
+| 34.        | Blanco  | -4    | 0           | 1          | 3.00002e-06 | 333,331        |
+| 33.        | Negro   | -4    | 1           | 2          | 6.00005e-06 | 333,331        |
+| 32.        | Blanco  | -4    | 3           | 5          | 4.00003e-06 | 1.24999e+06    |
+| 31.        | Negro   | -4    | 4           | 6          | 2.00002e-06 | 2.99998e+06    |
+| 30.        | Blanco  | -4    | 9           | 13         | 5.00004e-06 | 2.59998e+06    |
+| 29.        | Negro   | -4    | 10          | 14         | 5.00004e-06 | 2.79998e+06    |
+| 28.        | Blanco  | -4    | 64          | 91         | 3.80001e-05 | 2.39473e+06    |
+| 27.        | Negro   | -4    | 125         | 177        | 7.70001e-05 | 2.2987e+06     |
+| 26.        | Blanco  | -4    | 744         | 1049       | 0.000472   | 2.22246e+06     |
+| 25.        | Negro   | -4    | 3168        | 4498       | 0.002021   | 2.22563e+06     |
+| 24.        | Blanco  | -4    | 8597        | 11978      | 0.004796   | 2.4975e+06      |
+| 23.        | Negro   | -4    | 55127       | 76826      | 0.03269    | 2.35014e+06     |
+| 22.        | Blanco  | -4    | 308479      | 428402     | 0.182118   | 2.35233e+06     |
+| 21.        | Negro   | -4    | 2525249     | 3478735    | 1.446      | 2.40577e+06     |
+| 20.        | Blanco  | -4    | 9459570     | 13078933   | 6.214      | 2.10475e+06     |
+| 19.        | Negro   | -4    | 65121519    | 90647895   | 38.6079    | 2.34791e+06     |
+| 18.        | Blanco  | -4    | 625084814   | 876269598  | 373.83     | 2.34403e+06     |
+| 17.        | Negro   | -4    | 3999381161  | 1305006091 | 2339.84    | 557733          |
