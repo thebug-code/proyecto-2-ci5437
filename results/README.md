@@ -120,19 +120,19 @@ Gráfico 1: Nodos expandidos en cada nivel
 
 ![Expandidos][1]
 
-[1]: main/Figuras/imaexp.jpg
+[1]: ../Figuras/imaexp.jpg
 
 Gráfico 2: Nodos generados en cada nivel
 
 ![Generados][2]
 
-[2]: main/Figuras/imagene.jpg
+[2]: ../Figuras/imagene.jpg
 
 Gráfico 3: Tiempo en recorrer cada nivel
 
 ![Tiempo][3]
 
-[3]: main/Figuras/imatiem.jpg
+[3]: ../Figuras/imatiem.jpg
 
 Dados los resultados, se observa que el algoritmo más eficiente para recorrer el arbol de juego es Negascout, siendo ligeramente superior a lo mostrado por el algoritmo Scout.
 
@@ -149,6 +149,6 @@ Gráfico 4: Valores mínimos de los pv
 
 ![pv][4]
 
-[4]: main/Figuras/imapv.jpg
+[4]: ../Figuras/imapv.jpg
 
 
